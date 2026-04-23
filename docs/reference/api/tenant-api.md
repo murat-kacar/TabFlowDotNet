@@ -162,16 +162,72 @@ Token payload fields:
 The payload is backend-produced. Firmware does not generate QR codes
 locally. Details live in [`../firmware.md`](../firmware.md).
 
-## Error Rules
+## Error Model
 
-- Validation errors return `400` with a problem-details body.
-- Missing or expired session returns `401`.
-- Authorization failures return `403`.
-- Missing resources return `404`.
-- Rate-limit-exceeded responses return `429`.
-- Provisioning or runtime infrastructure problems surface through
-  `/health` and provisioning job state, not through customer-facing
-  endpoints.
+All error responses use [RFC 7807 Problem Details for HTTP APIs][rfc7807]
+with the `application/problem+json` media type. TabFlow extends the
+baseline Problem Details object with two additional members that every
+error response MUST carry:
+
+- `code` — a short, machine-stable identifier drawn from the enumerated
+  vocabulary in [`./error-codes.md`](./error-codes.md).
+- `traceId` — the current trace identifier (ASP.NET Core
+  `Activity.TraceId`) for correlating server logs.
+
+[rfc7807]: https://www.rfc-editor.org/rfc/rfc7807
+
+Example error body:
+
+```json
+{
+  "type": "https://tabflow.dev/errors/token-used",
+  "title": "QR token already consumed",
+  "status": 409,
+  "detail": "The submitted QR token has already opened another session.",
+  "code": "token_used",
+  "traceId": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01"
+}
+```
+
+Status code policy:
+
+- `400 Bad Request` — request schema invalid or business precondition
+  failed at input validation.
+- `401 Unauthorized` — the caller has no valid session or access
+  ticket.
+- `403 Forbidden` — the caller is authenticated but the requested
+  resource is outside their role scope.
+- `404 Not Found` — the addressed resource does not exist in the
+  tenant scope.
+- `409 Conflict` — the request targets a state that has already
+  progressed (consumed token, reassigned bill, closed session).
+- `410 Gone` — the addressed resource existed and is now retired
+  (expired token, closed bill that was also archived).
+- `429 Too Many Requests` — the caller exceeded the rate budget for
+  the endpoint.
+- `5xx` — infrastructure failure; the response MUST still carry the
+  Problem Details shape and a generic `code`.
+
+The `code` vocabulary is the normative contract for error handling.
+Clients key their behaviour off `code`, never off `title`. See
+[`./error-codes.md`](./error-codes.md).
+
+Per-endpoint error codes:
+
+- `POST /api/public/orders`:
+  `invalid_request`, `session_expired`, `checkout_proof_invalid`,
+  `checkout_proof_expired`, `cart_empty`, `catalog_stale`,
+  `rate_limited`.
+- `GET /api/public/session`: `session_expired`.
+- `GET /api/public/catalog`: `rate_limited` on abusive probes.
+- `GET /api/public/profile`: `rate_limited` on abusive probes.
+- `GET /ws/tables/{tableNumber}`: handshake failure surfaces a close
+  code with `code` in the close reason; see the WebSocket family in
+  [`./error-codes.md`](./error-codes.md).
+
+Provisioning or runtime infrastructure problems surface through
+`/health` and provisioning job state, not through customer-facing
+endpoints.
 
 ## Absent Surfaces
 
