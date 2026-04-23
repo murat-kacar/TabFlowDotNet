@@ -17,3 +17,5 @@ Explanation entrypoints:
 
 - [`./concepts/README.md`](./concepts/README.md)
 - [`./decisions/README.md`](./decisions/README.md)
+- [`./alignment-with-pos-conventions.md`](./alignment-with-pos-conventions.md)
+- [`./deliberate-choices.md`](./deliberate-choices.md)

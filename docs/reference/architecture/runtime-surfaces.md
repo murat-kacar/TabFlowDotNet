@@ -1,5 +1,17 @@
 # Runtime Surfaces
 
+**Status:** Normative. The keywords **MUST**, **MUST NOT**, **SHALL**,
+**SHOULD**, and **MAY** are used per [RFC 2119][rfc2119] and [RFC 8174][rfc8174].
+
+**Maintenance rule:** When a route, role, render mode, runtime anchor, or
+ticket card invariant changes, this document is updated in the same pull
+request as the change.
+
+[rfc2119]: https://www.rfc-editor.org/rfc/rfc2119
+[rfc8174]: https://www.rfc-editor.org/rfc/rfc8174
+
+---
+
 This document is the reference map for every runtime surface served by the
 platform host and the tenant host.
 
@@ -404,3 +416,25 @@ covers every plausible station terminal short of a fully custom firmware.
 The final decision still depends on the hardware class, but that
 candidate is the safe default if the project has to land something
 before the hardware is chosen.
+
+## Web Indexing Posture
+
+TabFlow has no outward marketing surface. Every HTML route on every
+host is an operational surface served to a specific authenticated or
+table-bound visitor, so none of them MUST appear in a search index.
+
+- Every HTML response MUST carry
+  `X-Robots-Tag: noindex, nofollow, noarchive`.
+- Every HTML document MUST carry
+  `<meta name="robots" content="noindex,nofollow,noarchive">`.
+- `GET /robots.txt` on every host MUST return a fully-disallowed
+  policy for all user agents.
+- No `sitemap.xml` listing application routes MUST be served.
+- The priority order for the product is **security > privacy >
+  performance > accessibility**; search-engine visibility is
+  intentionally absent from this list.
+
+This posture is verified in the release gate
+([`../../meta/release-gate.md`](../../meta/release-gate.md)) and is
+tracked as acceptance criteria AC-090 to AC-092 in
+[`../acceptance-criteria.md`](../acceptance-criteria.md).

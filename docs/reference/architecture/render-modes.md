@@ -1,5 +1,16 @@
 # Render Modes
 
+**Status:** Normative. The keywords **MUST**, **MUST NOT**, **SHALL**,
+**SHOULD**, and **MAY** are used per [RFC 2119][rfc2119] and [RFC 8174][rfc8174].
+
+**Maintenance rule:** When a surface family changes render mode, this
+document is updated in the same pull request as the change.
+
+[rfc2119]: https://www.rfc-editor.org/rfc/rfc2119
+[rfc8174]: https://www.rfc-editor.org/rfc/rfc8174
+
+---
+
 Blazor Web App exposes four render modes: Static SSR, Interactive Server,
 Interactive WebAssembly, and Interactive Auto. TabFlow uses only two of them.
 
