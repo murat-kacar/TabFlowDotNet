@@ -105,7 +105,7 @@ Reference patterns:
 - [Toast Kitchen Display System][toast-kds] — station-scoped routing,
   item-level state, derived order state.
 
-[toast-kds]: https://pos.toasttab.com/hardware/kitchen-display-system
+[toast-kds]: https://support.toasttab.com/en/article/Get-Started-With-the-Kitchen-Display-System
 
 ## Granular Role And Permission Matrix
 
