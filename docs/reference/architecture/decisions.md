@@ -1,5 +1,16 @@
 # Architecture Decisions
 
+**Status:** Normative. The keywords **MUST**, **MUST NOT**, **SHALL**,
+**SHOULD**, and **MAY** are used per [RFC 2119][rfc2119] and [RFC 8174][rfc8174].
+
+**Maintenance rule:** When an architecture decision is added, accepted, or
+superseded, this document is updated in the same pull request as the change.
+
+[rfc2119]: https://www.rfc-editor.org/rfc/rfc2119
+[rfc8174]: https://www.rfc-editor.org/rfc/rfc8174
+
+---
+
 This document is the single record of active architecture decisions that shape
 the TabFlow repository. Each entry captures the context, the decision itself,
 and the consequences that follow.

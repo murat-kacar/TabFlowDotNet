@@ -1,5 +1,17 @@
 # Tenant API Reference
 
+**Status:** Normative. The keywords **MUST**, **MUST NOT**, **SHALL**,
+**SHOULD**, and **MAY** are used per [RFC 2119][rfc2119] and [RFC 8174][rfc8174].
+
+**Maintenance rule:** When an endpoint, request schema, response schema,
+authentication mechanism, status code, or error code changes, this
+document is updated in the same pull request as the change.
+
+[rfc2119]: https://www.rfc-editor.org/rfc/rfc2119
+[rfc8174]: https://www.rfc-editor.org/rfc/rfc8174
+
+---
+
 The tenant API is the externally visible HTTP surface of a tenant host.
 
 The tenant host runs a Blazor Web App. Most server work happens through

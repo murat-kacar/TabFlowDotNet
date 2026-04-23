@@ -1,5 +1,14 @@
 # Capability Matrix
 
+**Status:** Informative. This document reports implementation state; it
+does not itself impose requirements.
+
+**Maintenance rule:** When a capability moves between `Target`, `In
+progress`, `Implemented`, and `Deferred`, this document is updated in the
+same pull request as the change.
+
+---
+
 This matrix is the current implementation status for the repository against
 the baseline architecture described in
 [`./system-overview.md`](./system-overview.md),

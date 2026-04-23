@@ -1,5 +1,17 @@
 # Database Schema Reference
 
+**Status:** Normative. The keywords **MUST**, **MUST NOT**, **SHALL**,
+**SHOULD**, and **MAY** are used per [RFC 2119][rfc2119] and [RFC 8174][rfc8174].
+
+**Maintenance rule:** When a table, column, index, constraint, or
+migration lands in either the platform or tenant schema, this document is
+updated in the same pull request as the change.
+
+[rfc2119]: https://www.rfc-editor.org/rfc/rfc2119
+[rfc8174]: https://www.rfc-editor.org/rfc/rfc8174
+
+---
+
 This document is the high-level schema map for TabFlow.
 
 It stays at the shape-and-ownership level. Raw DDL lives in the EF Core
