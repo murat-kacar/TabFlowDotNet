@@ -13,3 +13,5 @@ Current meta documents:
 
 - [`./contributing.md`](./contributing.md)
 - [`./changelog.md`](./changelog.md)
+- [`./release-gate.md`](./release-gate.md)
+- [`./authorship.md`](./authorship.md)
