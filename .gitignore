@@ -1,0 +1,66 @@
+# .NET build output
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.userosscache
+*.sln.docstates
+
+# Rider / Visual Studio
+.idea/
+.vs/
+*.iml
+
+# VS Code workspace, but keep shared settings
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# EF Core
+**/Migrations/Backup/
+
+# Test output
+TestResults/
+coverage/
+*.trx
+*.coverage
+*.coveragexml
+.coverlet/
+
+# Local development
+*.db
+*.db-journal
+appsettings.*.Local.json
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Generated firmware artifacts
+src/packages/firmware/generated/
+
+# Direnv
+.envrc.local
